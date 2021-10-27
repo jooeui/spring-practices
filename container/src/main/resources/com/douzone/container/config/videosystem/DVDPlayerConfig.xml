@@ -103,6 +103,7 @@
 		p:studio="MARVLE"
 		p:actors-ref="actorList"/>
 		
+	<!-- **************************** bean 주입 **************************** -->
 	<!-- 12. bean 주입: 생성자1 -->
 	<bean id="dvdPlayer1" class="com.douzone.container.videosystem.DVDPlayer">
 		<constructor-arg ref="ironMan" />
