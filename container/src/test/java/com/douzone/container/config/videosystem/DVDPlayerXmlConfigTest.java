@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.douzone.container.videosystem.DVDPack;
 import com.douzone.container.videosystem.DigitalVideoDisc;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -39,7 +40,7 @@ public class DVDPlayerXmlConfigTest {
 	private DigitalVideoDisc dvd4;
 
 	@Autowired
-	@Qualifier("avengerAgeOfUltron")
+	@Qualifier("avengersAgeOfUltron")
 	private DigitalVideoDisc dvd5;
 
 	@Autowired
@@ -49,6 +50,22 @@ public class DVDPlayerXmlConfigTest {
 	@Autowired
 	@Qualifier("avengersDirectorEdition")
 	private DigitalVideoDisc dvd7;
+	
+	@Autowired
+	private DVDPack dvdPack;	// dvdPack은 하나밖에 없으므로 Qualifier를 안 써줘도 됨!
+	
+	@Autowired
+	@Qualifier("avengersExpansionEdition1")
+	private DigitalVideoDisc dvd8;
+	
+	@Autowired
+	@Qualifier("avengersExpansionEdition2")
+	private DigitalVideoDisc dvd9;
+	
+	@Autowired
+	@Qualifier("avengersExpansionEdition3")
+	private DigitalVideoDisc dvd10;
+	
 
 	@Ignore
 	@Test
@@ -86,4 +103,24 @@ public class DVDPlayerXmlConfigTest {
 		assertNotNull(dvd7);
 	}
 	
+	@Test
+	public void testDVDPack() {
+//		System.out.println(dvdPack);
+		assertNotNull(dvdPack);
+	}
+	
+	@Test
+	public void testDVD8() {
+		assertNotNull(dvd8);
+	}
+	
+	@Test
+	public void testDVD9() {
+		assertNotNull(dvd9);
+	}
+	
+	@Test
+	public void testDVD10() {
+		assertNotNull(dvd10);
+	}
 }

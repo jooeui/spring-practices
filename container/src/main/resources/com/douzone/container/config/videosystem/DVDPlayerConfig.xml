@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:context="http://www.springframework.org/schema/context"
@@ -34,7 +36,7 @@
 		c:studio="MARVLE" />
 	
 	<!-- 05. bean 설정: 생성자 "-->
-	<bean id="avengerAgeOfUltron" class="com.douzone.container.videosystem.BlankDisc" 
+	<bean id="avengersAgeOfUltron" class="com.douzone.container.videosystem.BlankDisc" 
 		c:title="Avengers Age Of Ultron" 
 		c:studio="MARVLE" />
 	
@@ -46,9 +48,9 @@
 	</bean>
 	
 	<!-- 07. bean 설정: 생성자 Collection Argument -->
-	<bean id="avengersDirectorEdition" class="com.douzone.container.videosystem.BlankDisc">
-		<constructor-arg name="title" value="Avengers Director Edition" />
-		<constructor-arg name="studio" value="MARVLE" />
+	<bean id="avengersDirectorEdition" class="com.douzone.container.videosystem.BlankDisc"
+		c:title="Avengers Director Edition"
+		c:studio="MARVLE">
 		<constructor-arg name="actors" >
 			<list>
 				<value>Robert Downey Jr.</value>			
@@ -57,5 +59,48 @@
 			</list>
 		</constructor-arg>
 	</bean>
+	
+	<!-- 08. bean 설정: Wiring Collection -->
+	<bean id="avengersTriplepack" class="com.douzone.container.videosystem.DVDPack"
+		c:title="Avengers Triplepack">
+		<constructor-arg name="dvds" >
+			<list>
+				<ref bean="avengersInfinityWar"/>
+				<ref bean="avengersAgeOfUltron"/>
+				<ref bean="avengersEndgame"/>
+			</list>
+		</constructor-arg>
+	</bean>
+	
+	<!-- 09. bean 설정: 프로퍼티를 사용한 bean 설정1 -->
+	<bean id="avengersExpansionEdition1" class="com.douzone.container.videosystem.BlankDisc">
+		<!-- property를 사용하기 위해서는 기본 생성자와 setter가 있어야 함! -->
+		<property name="title" value="Avengers Expansion Edition1" />
+		<property name="studio" value="MARVLE" />
+	</bean>
+	
+	<!-- 10. bean 설정: 프로퍼티를 사용한 bean 설정2 -->
+	<bean id="avengersExpansionEdition2" class="com.douzone.container.videosystem.BlankDisc"
+		p:title="Avengers Expansion Edition2"
+		p:studio="MARVLE">
+		<property name="actors" >
+			<list>
+				<value>Robert Downey Jr.</value>			
+				<value>Scalette</value>
+				<value>Chris Evans</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- 11. bean 설정: 프로퍼티를 사용한 bean 설정3 -->
+	<util:list id="actorList">
+		<value>Robert Downey Jr.</value>			
+		<value>Scalette</value>
+		<value>Chris Evans</value>
+	</util:list>
+	<bean id="avengersExpansionEdition3" class="com.douzone.container.videosystem.BlankDisc"
+		p:title="Avengers Expansion Edition3"
+		p:studio="MARVLE"
+		p:actors-ref="actorList"/>
 	
 </beans>
